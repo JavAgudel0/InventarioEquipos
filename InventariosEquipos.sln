@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntentariosEquipos.Common", "IntentariosEquipos.Common\IntentariosEquipos.Common.csproj", "{D94BA82C-4698-43C6-BF86-14E1D9F0C0FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventariosEquipos.Web", "InventariosEquipos.Web\InventariosEquipos.Web.csproj", "{8B4A24FD-A5FC-4F6F-9A9E-818AEB5F129E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D94BA82C-4698-43C6-BF86-14E1D9F0C0FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D94BA82C-4698-43C6-BF86-14E1D9F0C0FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D94BA82C-4698-43C6-BF86-14E1D9F0C0FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D94BA82C-4698-43C6-BF86-14E1D9F0C0FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B4A24FD-A5FC-4F6F-9A9E-818AEB5F129E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B4A24FD-A5FC-4F6F-9A9E-818AEB5F129E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B4A24FD-A5FC-4F6F-9A9E-818AEB5F129E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B4A24FD-A5FC-4F6F-9A9E-818AEB5F129E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33855584-EA0C-481F-8431-84CC7C1BF2EE}
+	EndGlobalSection
+EndGlobal
