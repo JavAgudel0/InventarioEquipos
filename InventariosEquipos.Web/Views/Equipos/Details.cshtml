@@ -1,0 +1,186 @@
+﻿@model InventariosEquipos.Web.Data.Entities.Equipo
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Equipo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoCalidad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CodigoCalidad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Referencia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Referencia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpleadoAsignado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmpleadoAsignado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreEmpleado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NombreEmpleado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CargoEmpleado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CargoEmpleado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sucursal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sucursal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreEquipo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NombreEquipo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoEquipo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TipoEquipo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DireccionIP)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DireccionIP)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsoEquipo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsoEquipo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SerialEquipo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SerialEquipo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SistemaOperativoInstalado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SistemaOperativoInstalado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoEquipo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EstadoEquipo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DiscoDuro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DiscoDuro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Procesador)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Procesador)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ram)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ram)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LicenciaSistemaOperativo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LicenciaSistemaOperativo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LicenciaOffice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LicenciaOffice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Antivirus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Antivirus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Backup)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Backup)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaAdquisicion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaAdquisicion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MarcaEquipo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MarcaEquipo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioCompra)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PrecioCompra)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DesempeñoPC)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DesempeñoPC)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SapIP)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SapIP)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SapRemoto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SapRemoto)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
