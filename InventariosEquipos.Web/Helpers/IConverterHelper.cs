@@ -6,7 +6,7 @@ namespace InventariosEquipos.Web.Helpers
 {
     public interface IConverterHelper
     {
-        Task<Equipo> ToEquipoAsync(EquipoViewModel model);
+        Task<Equipo> ToEquipoAsync(EquipoViewModel model, string path);
 
         EquipoViewModel ToEquipoViewModel(Equipo equipo);
     }

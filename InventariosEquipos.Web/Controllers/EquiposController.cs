@@ -2,8 +2,11 @@
 using InventariosEquipos.Web.Data.Entities;
 using InventariosEquipos.Web.Helpers;
 using InventariosEquipos.Web.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,19 +17,22 @@ namespace InventariosEquipos.Web.Controllers
         private readonly DataContext _context;
         private readonly ICombosHelper _combosHelper;
         private readonly IConverterHelper _converterHelper;
+        private readonly IImageHelper _imageHelper;
 
         public EquiposController(
             DataContext context,
             ICombosHelper comboshelper,
-            IConverterHelper converterHelper)
+            IConverterHelper converterHelper,
+            IImageHelper imageHelper)
         {
             _context = context;
             _combosHelper = comboshelper;
             _converterHelper = converterHelper;
+            _imageHelper = imageHelper;
         }
 
         // GET: Equipos
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return View(_context.Equipos
             .Include(o => o.Estado)
@@ -35,6 +41,10 @@ namespace InventariosEquipos.Web.Controllers
 
             //return View(await _context.Equipos.ToListAsync());
         }
+
+
+//-------------------------------------------------------------------------------
+
 
         // GET: Equipos/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -50,7 +60,7 @@ namespace InventariosEquipos.Web.Controllers
                 Include(e => e.SistemaOperativo).
                 Include(e => e.Estado).
                 Include(e => e.LicenciaSistemaOperativo).
-                Include(e => e.OfficeLicencia).
+                //Include(e => e.OfficeLicencia).
                 Include(e => e.Marca).
                 Include(e => e.Color).
                 Include(e => e.Desempeno)
@@ -64,6 +74,11 @@ namespace InventariosEquipos.Web.Controllers
             return View(equipo);
         }
 
+
+//--------------------------------------------------------------------------------
+
+
+
         // GET: Equipos/Create---------------------------------------------------
         public IActionResult Create()
         {
@@ -76,7 +91,6 @@ namespace InventariosEquipos.Web.Controllers
                 Sucursales = _combosHelper.GetComboSucursales(),
                 Estados = _combosHelper.GetComboEstados(),
                 SistemasOperativos = _combosHelper.GetComboSistemasOperativos(),
-                OfficeLicencias = _combosHelper.GetComboOfficeLicencias(),
                 LicenciasSistemasOperativos = _combosHelper.GetComboLicenciasSistemasOperativos()
             };
 
@@ -92,19 +106,25 @@ namespace InventariosEquipos.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var equipo = await _converterHelper.ToEquipoAsync (model);
+                var path = string.Empty;
+
+                if (model.ImageFile != null)
+                {
+                    path = await _imageHelper.UploadImageAsync(model.ImageFile);                   
+
+                }
+                
+                var equipo = await _converterHelper.ToEquipoAsync (model, path);
                 _context.Equipos.Add(equipo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction($"Index");
-
-                //_context.Add(equipo);
-                //await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
             }
             return View(model);
         }
 
         
+//---------------------------------------------------------------------------
+
 
         // GET: Equipos/Edit/5---------------------------------------------------
         public async Task<IActionResult> Edit(int? id)
@@ -120,7 +140,6 @@ namespace InventariosEquipos.Web.Controllers
                 Include(e => e.SistemaOperativo).
                 Include(e => e.Estado).
                 Include(e => e.LicenciaSistemaOperativo).
-                Include(e => e.OfficeLicencia).
                 Include(e => e.Marca).
                 Include(e => e.Color).
                 Include(e => e.Desempeno).
@@ -143,30 +162,23 @@ namespace InventariosEquipos.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                var equipo = await _converterHelper.ToEquipoAsync(model);
+                var path = model.ImageUrl;
+
+                if (model.ImageFile != null)
+                {
+                    path = await _imageHelper.UploadImageAsync(model.ImageFile);
+                }
+
+                var equipo = await _converterHelper.ToEquipoAsync(model, path);
                 _context.Equipos.Update(equipo);
                 await _context.SaveChangesAsync();
-                return RedirectToAction($"Details/{model.Id}");
-                //try
-                //{
-                //    _context.Update(equipo);
-                //    await _context.SaveChangesAsync();
-                //}
-                //catch (DbUpdateConcurrencyException)
-                //{
-                //    if (!EquipoExists(equipo.Id))
-                //    {
-                //        return NotFound();
-                //    }
-                //    else
-                //    {
-                //        throw;
-                //    }
-                //}
-                //return RedirectToAction(nameof(Index));
+                return RedirectToAction($"Details/{model.Id}");               
             }
             return View(model);
         }
+
+//--------------------------------------------------------------------------------------
+
 
         // GET: Equipos/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -201,34 +213,6 @@ namespace InventariosEquipos.Web.Controllers
         {
             return _context.Equipos.Any(e => e.Id == id);
         }
-
-
-
-        //public IActionResult AddEquipo(int? id)
-        //{
-
-        //    EquipoViewModel model = new EquipoViewModel
-        //    {
-        //        Colores = _combosHelper.GetComboColores()
-        //    };
-
-        //    return View(model);
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> AddPet(EquipoViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var path = string.Empty;
-
-        //        _context.Colores.Add(color);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction($"Details/{model.OwnerId}");
-        //    }
-
-        //    return View(model);
-        //}
 
     }
 }

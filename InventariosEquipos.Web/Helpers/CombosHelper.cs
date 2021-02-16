@@ -160,27 +160,7 @@ namespace InventariosEquipos.Web.Helpers
 
             return list6;
         }
-
-        public IEnumerable<SelectListItem> GetComboOfficeLicencias()
-        {
-
-            var list7 = _dataContext.OfficeLicencias.Select(pt => new SelectListItem
-            {
-                Text = pt.LicenciaOffice,
-                Value = $"{pt.Id}"
-
-            })
-                .OrderBy(pt => pt.Text)
-                .ToList();
-
-            list7.Insert(0, new SelectListItem
-            {
-                Text = "[Seleccione una licencia de Office...]",
-                Value = "0"
-            });
-
-            return list7;
-        }
+        
 
         public IEnumerable<SelectListItem> GetComboLicenciasSistemasOperativos()
         {

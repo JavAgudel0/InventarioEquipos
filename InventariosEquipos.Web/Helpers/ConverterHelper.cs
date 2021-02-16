@@ -19,7 +19,7 @@ namespace InventariosEquipos.Web.Helpers
             _comboshelper = combosHelper;
         }
 
-        public async Task<Equipo> ToEquipoAsync(EquipoViewModel model)
+        public async Task<Equipo> ToEquipoAsync(EquipoViewModel model, string path)
         {
             var equipo = new Equipo
             {
@@ -41,7 +41,7 @@ namespace InventariosEquipos.Web.Helpers
                 Procesador = model.Procesador,
                 Ram = model.Ram,
                 LicenciaSistemaOperativo = await _datacontext.LicenciasSistemasOperativos.FindAsync(model.LicenciaSistemaOperativoId),
-                OfficeLicencia = await _datacontext.OfficeLicencias.FindAsync(model.OfficeLicenciaId),
+                LicenciaOffice = model.LicenciaOffice,
                 Antivirus = model.Antivirus,
                 Backup = model.Backup,
                 FechaAdquisicion = model.FechaAdquisicion,
@@ -51,7 +51,8 @@ namespace InventariosEquipos.Web.Helpers
                 Desempeno = await _datacontext.Desempeños.FindAsync(model.DesempenoId),
                 SapIP = model.SapIP,
                 SapRemoto = model.SapRemoto,
-                Observaciones = model.Observaciones
+                Observaciones = model.Observaciones,
+                ImageUrl = path
             };
             return equipo;
         }
@@ -65,30 +66,39 @@ namespace InventariosEquipos.Web.Helpers
                 EmpleadoAsignado = equipo.EmpleadoAsignado,
                 NombreEmpleado = equipo.NombreEmpleado,
                 CargoEmpleado = equipo.CargoEmpleado,
-                Sucursales = _comboshelper.GetComboSucursales()>,
+                SucursalId = equipo.Sucursal.Id,
+                Sucursales = _comboshelper.GetComboSucursales(),
                 NombreEquipo = equipo.NombreEquipo,
                 TipoEquipo = equipo.TipoEquipo,
                 DireccionIP = equipo.DireccionIP,
+                UsoID = equipo.Uso.Id,
                 Usos = _comboshelper.GetComboUsos(),
                 SerialEquipo = equipo.SerialEquipo,
+                SistemaOperativoId = equipo.SistemaOperativo.Id,
                 SistemasOperativos = _comboshelper.GetComboSistemasOperativos(),
+                EstadoId = equipo.Estado.Id,
                 Estados = _comboshelper.GetComboEstados(),
                 DiscoDuro = equipo.DiscoDuro,
                 Procesador = equipo.Procesador,
                 Ram = equipo.Ram,
+                LicenciaSistemaOperativoId = equipo.LicenciaSistemaOperativo.Id,
                 LicenciasSistemasOperativos = _comboshelper.GetComboLicenciasSistemasOperativos(),
-                OfficeLicencias = _comboshelper.GetComboOfficeLicencias(),
+                LicenciaOffice = equipo.LicenciaOffice,
                 Antivirus = equipo.Antivirus,
                 Backup = equipo.Backup,
                 FechaAdquisicion = equipo.FechaAdquisicion,
+                MarcaId = equipo.Marca.Id,
                 Marcas = _comboshelper.GetComboMarcas(),
+                ColorId = equipo.Color.Id,
                 Colores = _comboshelper.GetComboColores(),
                 PrecioCompra = equipo.PrecioCompra,
+                DesempenoId = equipo.Desempeno.Id,
                 Desempenos = _comboshelper.GetComboDesempenos(),
                 SapIP = equipo.SapIP,
                 SapRemoto = equipo.SapRemoto,
-                Observaciones = equipo.Observaciones
-
+                Observaciones = equipo.Observaciones,
+                ImageUrl = equipo.ImageUrl
+               
             };
         }
     }

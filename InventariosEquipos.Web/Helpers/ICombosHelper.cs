@@ -19,8 +19,6 @@ namespace InventariosEquipos.Web.Helpers
 
         IEnumerable<SelectListItem> GetComboSistemasOperativos();
 
-        IEnumerable<SelectListItem> GetComboOfficeLicencias();
-
         IEnumerable<SelectListItem> GetComboLicenciasSistemasOperativos();
 
     }

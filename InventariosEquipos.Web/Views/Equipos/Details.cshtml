@@ -23,6 +23,16 @@
             @Html.DisplayFor(model => model.Referencia)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </dt>
+        <dd>
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="@Url.Content(Model.ImageUrl)" alt="Image" style="width:100PX;height:100PX;max-height: 100%; width: auto;" />
+            }
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.EmpleadoAsignado)
         </dt>
         <dd>
@@ -113,10 +123,10 @@
             @Html.DisplayFor(model => model.LicenciaSistemaOperativo.Licencia)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.OfficeLicencia)
+            @Html.DisplayNameFor(model => model.LicenciaOffice)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.OfficeLicencia.LicenciaOffice)
+            @Html.DisplayFor(model => model.LicenciaOffice)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Antivirus)

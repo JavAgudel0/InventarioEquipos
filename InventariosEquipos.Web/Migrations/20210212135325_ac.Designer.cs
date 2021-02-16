@@ -4,14 +4,16 @@ using InventariosEquipos.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InventariosEquipos.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210212135325_ac")]
+    partial class ac
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,12 +90,6 @@ namespace InventariosEquipos.Web.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<string>("ImageUrl");
-
-                    b.Property<string>("LicenciaOffice")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
                     b.Property<int?>("LicenciaSistemaOperativoId");
 
                     b.Property<int?>("MarcaId");
@@ -106,7 +102,10 @@ namespace InventariosEquipos.Web.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<string>("Observaciones");
+                    b.Property<string>("Observaciones")
+                        .HasMaxLength(500);
+
+                    b.Property<int?>("OfficeLicenciaId");
 
                     b.Property<int>("PrecioCompra");
 
@@ -153,6 +152,8 @@ namespace InventariosEquipos.Web.Migrations
                     b.HasIndex("LicenciaSistemaOperativoId");
 
                     b.HasIndex("MarcaId");
+
+                    b.HasIndex("OfficeLicenciaId");
 
                     b.HasIndex("SistemaOperativoId");
 
@@ -203,6 +204,20 @@ namespace InventariosEquipos.Web.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Marcas");
+                });
+
+            modelBuilder.Entity("InventariosEquipos.Web.Data.Entities.OfficeLicencia", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("LicenciaOffice")
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OfficeLicencias");
                 });
 
             modelBuilder.Entity("InventariosEquipos.Web.Data.Entities.SistemaOperativo", b =>
@@ -268,6 +283,10 @@ namespace InventariosEquipos.Web.Migrations
                     b.HasOne("InventariosEquipos.Web.Data.Entities.Marca", "Marca")
                         .WithMany("Equipos")
                         .HasForeignKey("MarcaId");
+
+                    b.HasOne("InventariosEquipos.Web.Data.Entities.OfficeLicencia", "OfficeLicencia")
+                        .WithMany()
+                        .HasForeignKey("OfficeLicenciaId");
 
                     b.HasOne("InventariosEquipos.Web.Data.Entities.SistemaOperativo", "SistemaOperativo")
                         .WithMany("Equipos")

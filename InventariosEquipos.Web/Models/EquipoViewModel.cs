@@ -47,14 +47,12 @@ namespace InventariosEquipos.Web.Models
         public int SistemaOperativoId { get; set; }
 
         [Required(ErrorMessage = "The field {0} is mandatory.")]
-        [Display(Name = "Licencia de office")]
-        [Range(1, int.MaxValue, ErrorMessage = "Debes seleccionar una licencia de office.")]
-        public int OfficeLicenciaId { get; set; }
-
-        [Required(ErrorMessage = "The field {0} is mandatory.")]
         [Display(Name = "Licencia Sistema Operativo")]
         [Range(1, int.MaxValue, ErrorMessage = "Debes seleccionar una licencia de office.")]
         public int LicenciaSistemaOperativoId { get; set; }
+
+        [Display(Name = "Imagen")]
+        public IFormFile ImageFile { get; set; }
 
         public IEnumerable<SelectListItem> Colores { get; set; }
 
@@ -70,8 +68,8 @@ namespace InventariosEquipos.Web.Models
 
         public IEnumerable<SelectListItem> SistemasOperativos { get; set; }
 
-        public IEnumerable<SelectListItem> OfficeLicencias { get; set; }
-
         public IEnumerable<SelectListItem> LicenciasSistemasOperativos { get; set; }
+
+        
     }
 }
